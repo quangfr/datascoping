@@ -1,0 +1,30 @@
+{
+  "format": "datascoping-demo",
+  "version": 1,
+  "objects": [
+    {
+      "id": "demo-aircraft-v1", "recordId": "demo-aircraft", "name": "Avion", "versionId": "AVI_V1", "author": "Démonstration", "updatedAt": "2026-11-06T09:00:00.000Z",
+      "data": { "identification": { "businessId": "AVI-001", "family": "Flotte", "subObject": "Avion principal", "dataName": "Fiche avion", "definition": "Référentiel des aéronefs exploités : identité, configuration et statut opérationnel.", "flow": "both", "sourceKind": "application", "sourceName": "Système de gestion de flotte", "loadMode": "ontrigger" }, "produced": { "outputName": "Liste des avions actifs", "format": "Table structurée", "consumer": "Opérations" }, "governance": { "owner": "Direction de la flotte", "steward": "Référent flotte" } }
+    },
+    {
+      "id": "demo-airport-v1", "recordId": "demo-airport", "name": "Airport", "versionId": "APT_V1", "author": "Démonstration", "updatedAt": "2026-11-06T09:05:00.000Z",
+      "data": { "identification": { "businessId": "APT-001", "family": "Infrastructure", "subObject": "Aéroport", "dataName": "Référentiel aéroport", "definition": "Référentiel des aéroports desservis avec leurs codes, coordonnées et capacités.", "flow": "both", "sourceKind": "external", "sourceName": "Référentiel aéroportuaire", "loadMode": "auto" }, "produced": { "outputName": "Aéroports desservis", "format": "CSV / API", "frequency": "Quotidienne" }, "governance": { "owner": "Direction des opérations", "steward": "Référent réseau" } }
+    },
+    {
+      "id": "demo-clients-v1", "recordId": "demo-clients", "name": "Données clients", "versionId": "CLI_V1", "author": "Démonstration", "updatedAt": "2026-11-06T09:10:00.000Z",
+      "data": { "identification": { "businessId": "CLI-001", "family": "Client", "subObject": "Profil client", "dataName": "Données de contact", "definition": "Informations nécessaires à la gestion de la relation client et au suivi des réservations.", "flow": "consumed", "sourceKind": "application", "sourceName": "CRM", "loadMode": "ontrigger", "kde": true }, "sensitivity": { "level": "confidential", "personal": true, "protection": "Accès limité aux équipes habilitées." }, "governance": { "owner": "Direction client", "steward": "Data steward CRM", "legalBasis": "Gestion de la relation contractuelle" } }
+    },
+    {
+      "id": "demo-fleet-v1", "recordId": "demo-fleet", "name": "Fleet", "versionId": "FLT_V1", "author": "Démonstration", "updatedAt": "2026-11-06T09:15:00.000Z",
+      "data": { "identification": { "businessId": "FLT-001", "family": "Flotte", "subObject": "Composition de flotte", "dataName": "État de flotte", "definition": "Vue consolidée des appareils, de leur affectation et de leur disponibilité.", "flow": "both", "sourceKind": "application", "sourceName": "Fleet Manager", "loadMode": "auto" }, "quality1": { "owner": "Responsable flotte", "frequency": "À chaque mise à jour" }, "governance": { "owner": "Direction de la flotte", "steward": "Gestionnaire de données flotte" } }
+    },
+    {
+      "id": "demo-operating-agreement-v1", "recordId": "demo-operating-agreement", "name": "Operating agreement", "versionId": "OAG_V1", "author": "Démonstration", "updatedAt": "2026-11-06T09:20:00.000Z",
+      "data": { "identification": { "businessId": "OAG-001", "family": "Opérations", "subObject": "Accord d’exploitation", "dataName": "Conditions d’exploitation", "definition": "Accord décrivant les responsabilités, périmètres et conditions d’exploitation entre parties.", "flow": "consumed", "sourceKind": "pdf", "sourceName": "Accord signé", "loadMode": "manual" }, "sensitivity": { "level": "confidential", "confidential": true }, "governance": { "owner": "Direction des opérations", "approver": "Responsable conformité", "lifecycle": "Conserver la version signée pendant la durée contractuelle." } }
+    },
+    {
+      "id": "demo-shop-finding-report-v1", "recordId": "demo-shop-finding-report", "name": "Shop finding report", "versionId": "SFR_V1", "author": "Démonstration", "updatedAt": "2026-11-06T09:25:00.000Z",
+      "data": { "identification": { "businessId": "SFR-001", "family": "Maintenance", "subObject": "Rapport de constat atelier", "dataName": "Finding maintenance", "definition": "Rapport recensant les constats réalisés lors d’une inspection ou intervention en atelier.", "flow": "produced", "sourceKind": "application", "sourceName": "Maintenance System", "loadMode": "ontrigger" }, "produced": { "outputName": "Rapport de constats", "format": "PDF et données structurées", "frequency": "À chaque intervention" }, "quality1": { "rules": [{ "name": "Référence obligatoire", "target": "Numéro de série avion", "threshold": "Renseigné" }] }, "governance": { "owner": "Direction maintenance", "steward": "Responsable navigabilité" } }
+    }
+  ]
+}
